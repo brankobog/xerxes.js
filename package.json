@@ -1,0 +1,22 @@
+{
+  "name": "xerxes.js",
+  "version": "1.0.0",
+  "description": "\u0016\u0016node.js server for distributed execution of machine learning algorithms",
+  "main": "src/xerxes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brankobog/xerxes.js.git"
+  },
+  "author": "Branko Bogdanovic",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/brankobog/xerxes.js/issues"
+  },
+  "homepage": "https://github.com/brankobog/xerxes.js#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

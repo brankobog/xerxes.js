@@ -1,0 +1,44 @@
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+.progress {
+  height: 0.3em;
+}
+
+#file_progress {
+  margin-top: 0.2em;
+}
+
+.control_button {
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+canvas {
+  background-color: white; 
+  width: 100%;
+  height: 40em;
+}

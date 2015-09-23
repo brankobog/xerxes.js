@@ -1,0 +1,2 @@
+netstat -aon | gawk ' $2~/:3001/ { print $5 } '
+taskkill /PID <PID> /F

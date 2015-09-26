@@ -21,11 +21,16 @@ input[readonly] {
   cursor: text !important;
 }
 
-.progress {
-  height: 0.3em;
+#upload_progress {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -0-transition: none !important;
+  transition: none !important;
 }
 
 #file_progress {
+  height: 0.3em;
   margin-top: 0.2em;
 }
 

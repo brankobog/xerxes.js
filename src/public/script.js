@@ -7,16 +7,8 @@ $(document).on("change", ".btn-file :file", function() {
 
 $(document).ready( function() {
     $(".btn-file :file").on("fileselect", function(event, numFiles, label) {
-        
-        var input = $(this).parents(".input-group").find(":text"),
-            log = numFiles > 1 ? numFiles + " files selected" : label;
-        
-        if( input.length ) {
-            input.val(log);
-        } else {
-            if( log ) alert(log);
-        }
-        
+        var input = $(this).parents(".input-group").find(":text");
+        input.val(label);
     });
 
     $("#upload_button").addClass("disabled");
@@ -45,20 +37,28 @@ function startUpload () {
   name = $("#file_input").val().split("\\").pop();
 
   fileReader.onload = function(event) {
-    socket.emit("upload", {"name": name, data : event.target.result});
+    console.log(event.target.result);
+    socket.emit("upload", {name: name, data: event.target.result});
   }
-  socket.emit("start", {"name": name, "size" : selectedFile.size});
+
+  updateBar(0);
+  socket.emit("start", {name: name, size: selectedFile.size});
 }
 
-var chunkSize = 524288; // 0.5 MB
+//var chunkSize = 524288; // 0.5 MB
+var chunkSize = 4096; // 4 KB
+//var chunkSize = 10; // 10 B
 
 socket.on("moreData", function(data) {
-  updateBar(data["percent"]);
-  var cursor = data["cursor"] * chunkSize;
-  var newData = selectedFile.slice(cursor, cursor + Math.min(chunkSize, (selectedFile.size - cursor)));
-  fileReader.readAsBinaryString(newData); 
+  console.log(data);
+  updateBar(data.percent);
+  if (data.percent < 100) {
+    var cursor = data.cursor;
+    var newData = selectedFile.slice(cursor, cursor + Math.min(chunkSize, (selectedFile.size - cursor)));
+    fileReader.readAsBinaryString(newData);
+    } 
 })
 
 function updateBar(percent) {
-  $('#upload_progress').css('width', percent+'%').attr('aria-valuenow', percent);
+  $('#upload_progress').css("width", percent+"%").attr("aria-valuenow", percent);
 }

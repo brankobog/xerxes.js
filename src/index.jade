@@ -1,0 +1,59 @@
+doctype html
+html
+  head
+    title xerxes - a simple web workhorse
+    meta(name='viewport', content='width=device-width')
+    link(rel='stylesheet', type='text/css', href='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/style.css')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(type='text/javascript', src='https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+    script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.0.0.js')
+    script(type='text/javascript', src='/script.js')
+  body
+    .container(style='margin-top: 2em;')
+      .row
+        .col-12
+          .jumbotron.text-center
+            h1 xerxes.js
+        .container
+          .col-md-3
+            label.control-label Number of processes:
+          .col-md-9
+            label.control-label Input File:
+        .container
+          .col-md-3
+            .controls
+              select.form-control
+                option Auto
+                option 1
+                option 2
+                option 3
+                option 4
+                option 6
+                option 8
+                option 16
+          .col-md-6
+            .input-group
+              span.input-group-btn
+                button.btn.btn-primary.btn-file
+                  span.glyphicon.glyphicon-folder-open
+                input#file_input(type='file')
+              input.form-control(type='text', readonly='')
+              span.input-group-btn
+                button#upload_button.btn.btn-primary.btn-file
+                  span.glyphicon.glyphicon-arrow-up
+            #file_progress.progress
+              #upload_progress.progress-bar.progress-bar-info(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%;')
+                span.sr-only
+          .col-md-3
+            button.control_button.btn.btn-success.hidden(type='button')
+              | Start Processing 
+              span.glyphicon.glyphicon-ok
+            button.control_button.btn.btn-warning.disabled(type='button')
+              | Uploading 
+              span.glyphicon.glyphicon-arrow-up
+            button.control_button.btn.btn-danger.hidden(type='button')
+              | Stop Processing 
+              span.glyphicon.glyphicon-remove
+      .col-md-12
+        canvas#myCanvas(style='border:1px solid #ccc;')

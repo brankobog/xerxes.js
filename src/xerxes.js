@@ -7,7 +7,13 @@ var fs = require("fs");
 var exec = require("child_process").exec;
 var util = require("util");
 
+// setup path to public files
 app.use(express.static(path.join(__dirname, "public")));
+
+// setup jade engine
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
 
 server.listen(3001, function() {
 	var host = server.address().address;
@@ -17,7 +23,8 @@ server.listen(3001, function() {
 });
 
 app.get("/", function (req, res) {
-	res.sendFile(path.join(__dirname, "public/index.html"));
+//	res.sendFile(path.join(__dirname, "public/index.html"));
+	res.render("index", {});
 });
 
 var files = {};
